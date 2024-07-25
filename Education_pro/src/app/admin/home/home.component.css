@@ -1,0 +1,108 @@
+
+.header_img {
+    display: flex;
+    flex-direction: row; 
+    gap: 20px; 
+    padding: 20px;
+    margin-top: 140px;
+    /* background-color: #fff;  */
+  }
+  
+  .headstudent_image {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+    /* background-color: #f9f9f9;  */
+    border-radius: 8px; 
+    box-shadow: 4px 2px 4px 4px rgba(97, 90, 90, 0.1); 
+  }
+  
+  .headstudent_image h1 {
+    margin: 0;
+  }
+  
+  .headstudent_image img {
+    max-width: 100px; 
+    /* height: auto; */
+    margin-left: auto;
+  }
+  
+
+
+
+
+
+
+
+
+
+.grap_section {
+    /* border: 2px solid green; */
+    width: 100%;
+    margin-top: 30px;
+}
+
+.graph_count {
+    /* margin-top: 140px; */
+    width: 100%;
+}
+
+.graph_count1 {
+    display: flex;
+    width: 100%;
+    /* border: 2px solid red; */
+    justify-content: space-between; /* Ensures space between the left and right sections */
+}
+
+.graph_left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid blue; */
+}
+
+.graph_right {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid yellow; */
+    /* justify-content: center; */
+}
+
+.linechart {
+    width: 100%;
+    padding: 5px;
+    box-shadow: 3px 3px 4px 4px rgb(236, 234, 234);
+}
+
+.historicalchart {
+    width: 100%;
+    margin-top: 40px;
+    padding: 5px;
+    box-shadow: 3px 3px 4px 4px rgb(236, 234, 234);
+}
+
+.piechart {
+    width: 100%;
+    box-shadow: 3px 3px 4px 4px rgb(236, 234, 234);
+    padding: 5px;
+    /* height: 900px; */
+}
+
+.piecount_head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head_image{
+    width: 100%;
+}
+
+.head_image img {
+    width: 100%; 
+    /* height: auto; */
+    box-shadow: 3px 3px 4px 4px rgb(236, 234, 234);
+    height: 90%;
+}
