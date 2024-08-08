@@ -1,0 +1,49 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_course_subject`(
+    IN name VARCHAR(255),
+    IN duration INT,
+    IN type VARCHAR(50),
+    IN description VARCHAR(1000),
+    IN isactive TINYINT,
+    IN createby DATETIME,
+    IN subjectName VARCHAR(255),
+    IN semester INT
+)
+BEGIN
+    DECLARE CourseID INT;
+    DECLARE SubjectedID INT;
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    -- Insert data into md_course and get the new CourseID
+    INSERT INTO md_course (name, duration, type, description, isactive, createby)
+    VALUES (name, duration, type, description, isactive, createby);
+
+    SET CourseID = LAST_INSERT_ID();
+
+    -- Retrieve subjectid based on subjectname from md_subject
+    SELECT subjectid INTO SubjectedID
+    FROM md_subject
+    WHERE subjectname = subjectName
+    LIMIT 1;
+
+    -- If SubjectedID is NULL, insert the subject into md_subject and get the new subjectid
+    IF SubjectedID IS NULL THEN
+        -- Insert subject into md_subject if it doesn't exist
+        INSERT INTO md_subject (subjectname)
+        VALUES (subjectName);
+        
+        SET SubjectedID = LAST_INSERT_ID();
+    END IF;
+
+    -- Insert data into mp_course_subject
+    INSERT INTO mp_course_subject (id, subjectid, semester)
+    VALUES (CourseID, SubjectedID, semester);
+
+    COMMIT;
+END
