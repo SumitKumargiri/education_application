@@ -1,0 +1,13 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_profile_image`(
+    IN p_username VARCHAR(255),
+    IN p_profileImage LONGTEXT
+)
+BEGIN
+    -- Check if the username exists in mp_login
+    IF EXISTS (SELECT 1 FROM mp_login WHERE username = p_username) THEN
+        -- Update the profileImage in md_students table based on username
+        UPDATE md_students
+        SET profileImage = p_profileImage
+        WHERE username = p_username;
+    END IF;
+END
