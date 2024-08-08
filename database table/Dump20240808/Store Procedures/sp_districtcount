@@ -1,0 +1,6 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_districtcount`()
+BEGIN
+	SELECT districtname, COUNT(*) AS District_count
+    FROM md_students
+    GROUP BY districtname;
+END
