@@ -1,0 +1,9 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_student`(IN skip1 INT, IN take INT,IN searchValue text)
+BEGIN
+select id,username, firstname, lastname, email,districtname,districtcode, statename, statecode, mobile,gender, createby, updateby,profileImage, (SELECT COUNT(*) FROM student.md_students WHERE username LIKE CONCAT('%', searchValue, '%')) AS TotalRecords
+    FROM 
+        student.md_students
+        where username LIKE CONCAT('%',searchValue,'%')
+        LIMIT skip1, take;
+
+END
