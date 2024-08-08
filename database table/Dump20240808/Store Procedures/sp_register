@@ -1,0 +1,21 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_register`(
+    IN p_firstname VARCHAR(255),
+    IN p_lastname VARCHAR(255),
+    IN p_username VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_password LONGTEXT,
+    IN p_status VARCHAR(50),
+    IN p_type INT
+)
+BEGIN
+    -- Insert into mp_login table
+    INSERT INTO mp_login (firstname, lastname, username, email, password, status, type)
+    VALUES (p_firstname, p_lastname, p_username, p_email, p_password, p_status, p_type);
+    
+    -- Get the last inserted id
+    SET @last_inserted_id = LAST_INSERT_ID();
+
+    -- Insert into md_students table
+    INSERT INTO md_students (id, firstname, lastname, username, email, status,createby)
+    VALUES (@last_inserted_id, p_firstname, p_lastname, p_username, p_email, p_status,NOW());
+END
